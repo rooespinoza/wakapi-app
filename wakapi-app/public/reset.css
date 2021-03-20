@@ -1,0 +1,357 @@
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background-color: #F5F5F5;
+  }
+  b{
+    font-weight: 900;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  button{
+    border-radius: 5px;
+    color:white;
+    height: 40px;
+    outline: none;
+    border:none;
+    cursor: pointer;
+    min-width: 60px;
+    margin: 5px;
+  }
+   button:disabled{
+    box-shadow: none !important;
+    cursor: not-allowed;
+    background-color: #B6C6E0 !important;
+    color: white !important;
+    width: 165px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+  } 
+
+p{
+  font-weight: 400;
+  color: #868F9B;
+  font-size: 14px;
+}
+
+h1{
+  font-weight: 500;
+  color:#FFFFFF;
+  font-size: 24px;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2{
+  color:#FFFFFF;
+  font-size: 18px;
+  font-weight: 500;  
+}
+
+h3{
+  color:#7ECAD2;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+h4{
+  color:#868F9B;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+
+label{
+  color:#868F9B;
+  font-size: 14px;
+  font-weight: 500;  
+  letter-spacing: 0.5px;
+  
+}
+
+input{
+  color:#4F595F;
+  font-size: 16px;
+  width:350px;
+  border:0px;
+  border-bottom: 1px solid #868F9B;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 12px;
+  margin-bottom: 25px;
+}
+
+  input:focus{
+    outline: none;  
+  }
+
+  input[type="number"]{
+    -webkit-appearance: textfield !important;
+    -moz-appearance:textfield !important;
+    color:#4F595F;
+    font-size: 16px;
+    width: 350px;
+    border:0px;
+    border-bottom: 1px solid #868F9B;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 12px;
+    margin-bottom: 25px;
+  }
+  input[type="file"]{
+    width: 0.1px;
+	  height: 0.1px;
+	  opacity: 0;
+	  overflow: hidden;
+	  position: absolute;
+	  z-index: -1;
+  }
+  input[type="file"]+label{
+    font-size: 14px;
+    font-weight: 700;
+    color: #3E69B1;
+    display: inline-block;
+    text-transform: capitalize;
+    cursor: pointer;
+    letter-spacing: 0;
+    text-align: right;
+    width: 100%;
+  }
+
+  input[type="checkbox"]{
+    width: auto;
+    margin:3px;
+    height: auto;
+  }
+  input[type="checkbox"]:hover{
+    cursor:pointer;
+  }
+  input:disabled{
+    color: #ccc;
+    background-color: white;
+  }
+
+textarea{
+  color:#4F595F;
+  font-size: 16px;
+  width: 350px;
+  border: 1px solid #868F9B;
+  border-radius: 5px;
+  margin-top: 12px;
+  margin-bottom: 30px;  
+  font-family: 'Roboto', sans-serif;
+}
+
+  textarea:focus{
+    outline: none;
+  }
+
+select{  
+  font-family: 'Roboto', sans-serif;
+  color:#4F595F;
+  font-size: 16px;
+  border:0px;
+  width: 350px;
+  border-bottom: 1px solid #868F9B;
+  margin-top: 12px;
+  margin-bottom: 30px;
+  background-color: transparent;
+}
+
+  select:focus{
+    outline: none;
+  }
+
+  .radioGroup label {
+    display: block;
+    width: 330px;
+    padding: 10px;
+    border: solid 2px #3E69B1;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color:#3E69B1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;  
+    letter-spacing: 0px;
+    cursor: pointer;
+  }
+  
+  .radioGroup input[type="radio"] {
+    display: none;
+  }
+  
+  .radioGroup input[type="radio"]:checked + label {
+    border: solid 2px #7ECAD2;
+    color: #7ECAD2;
+  }
+
+
+.form--error{
+  margin-top: -23px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  color:#4F595F;
+
+}
+.form--errorCheck{
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  color:#4F595F;
+  border-top:1px solid #868F9B;
+}
+
+  select:focus{
+    outline: none;
+  }
+
+  .radioGroup label {
+    display: block;
+    width: 330px;
+    padding: 10px;
+    border: solid 2px #3E69B1;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color:#3E69B1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;  
+    letter-spacing: 0px;
+    cursor: pointer;
+  }
+  
+  .radioGroup input[type="radio"] {
+    display: none;
+  }
+  
+  .radioGroup input[type="radio"]:checked + label {
+    border: solid 2px #7ECAD2;
+    color: #7ECAD2;
+  }
+
+
+
+
+@media (max-width: 1025px){
+  
+}
+@media (max-width: 769px){
+  p{
+    font-size: 13px;
+  }
+  h1{
+    font-size: 22px;
+  }
+  h2{
+    font-size: 12px;
+  }
+  h3{
+    font-size: 22px;
+  }
+  h4{
+    font-size: 14px;
+  }
+  label{
+    font-size: 14px;
+  }
+
+  input{
+    width: 320px;
+    font-size: 15px;
+    height: 40px;
+  }
+  input[type="checkbox"]{
+    width: auto;
+    margin:3px;
+    height: auto;
+  }
+
+  textarea{
+    width: 320px;
+    font-size: 14px;
+  }
+
+  select{
+    width: 320px;
+    font-size: 14px;
+  }
+
+  .radioGroup label{
+    width: 300px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 426px){
+  label{
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px){
+  input{
+    width: 260px;
+    font-size: 14px;
+  }
+  input[type="checkbox"]{
+
+    margin:3px;
+    height: auto;
+  }
+  textarea{
+    width: 260px;
+    font-size: 4px;
+  }
+
+  select{
+    width: 260px;
+    font-size: 14px;
+  }
+
+  .radioGroup label{
+    width: 240px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 320px){
+  
+}
