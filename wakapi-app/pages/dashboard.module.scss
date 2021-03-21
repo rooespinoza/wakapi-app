@@ -1,5 +1,13 @@
 @import "../sass/variables.scss";
-.dashboard__container{}
+.dashboard__container{
+    padding: 30px;
+}
+.title__container{
+    margin-top: 120px;
+}
+.form__container{
+    margin-top: 40px;
+}
 @media (min-width: 360px) {
   
 }
