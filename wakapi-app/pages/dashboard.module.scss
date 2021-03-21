@@ -1,13 +1,40 @@
 @import "../sass/variables.scss";
 .dashboard__container{
-    padding: 30px;
+    padding-top: 30px;
+    background-color: $primaryColor;
 }
 .title__container{
     margin-top: 120px;
+    margin-left: $margin;
 }
 .form__container{
     margin-top: 40px;
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: $margin;
+    box-shadow: 10px 0px 10px rgba($color: #000000, $alpha: 0.1);
 }
+.form--error{
+    margin-top: -23px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    color:$greytext;
+  }
+
+  .footer__container{
+      margin-top: 30px;
+      text-align: center;
+      button{
+          display: inline-block;
+      }
+  }
+  .terms__container{
+      margin-top: 10px;
+      font-size: 13px;
+      color: $blacktext;
+  }
 @media (min-width: 360px) {
   
 }
