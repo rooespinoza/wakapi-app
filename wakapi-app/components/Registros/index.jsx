@@ -1,8 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import Button from '../Button';
 import styles from './registros.module.scss'
 const initialUsers = [];
-export const Registros = ({data}) => {
-    console.log(data)
+export const Registros = ({data,toggleIsRegistros}) => {
+    const [width, setWidth] = useState(0)
+    useEffect(() => {
+        setWidth(window.innerWidth)
+      }, [])
   const renderRegistros = () =>{
     return data.map(u=>(
         <div className={styles.row} key={u.id}>
@@ -30,6 +34,12 @@ export const Registros = ({data}) => {
                 }
               
             </div>
+            {width<480?
+            <Button secondary onClick={toggleIsRegistros}>Volver</Button>
+            :
+            <Fragment></Fragment>
+            }
+            
           </div>          
         </Fragment>
   )
