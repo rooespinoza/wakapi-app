@@ -9,6 +9,9 @@ import { date, object, string, mixed } from 'yup'
 import { getCountry } from '../utils/fetches'
 import dayjs from 'dayjs'
 import InputMask from 'react-input-mask'
+import Lottie from 'react-lottie'
+import spinner from '../public/animated/spinner.json';
+
 export async function getServerSideProps(context) {
   const { data } = await getCountry();
   return {
@@ -22,8 +25,17 @@ export const Dashboard = ({ countries }) => {
   const [width, setWidth] = useState(0)
   const [users, setUsers] = useState(initialUsers);
   const [isRegistros, setIsRegistros] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
   const toggleIsRegistros = () => setIsRegistros(!isRegistros)
 
+  const spinnerOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: spinner,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
   const renderCountry = () => {
     return countries.map(c => (
       <option key={c.alpha3code} value={c.name}>
@@ -36,8 +48,12 @@ export const Dashboard = ({ countries }) => {
   }, [])
 
   const submitForm = (values, actions) => {
+    setIsLoading(true);
     const u = { id: users.length + 1, name: values.name, date: values.date, country: values.country }
     setUsers([...users, u]);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }
   const parseDateString = (value, originalValue) => {
     const parsedValue = (dayjs(originalValue, 'DD/MM/YYYY').format('MM/DD/YYYY'))
@@ -96,7 +112,15 @@ export const Dashboard = ({ countries }) => {
         </select>
         <div className={styles.button__container}>
           <Button primary type="submit">
-            Guardar datos
+           {isLoading ? 
+              <Lottie
+                options={spinnerOptions}
+                height={17}
+              />
+              :
+              <Fragment>Guardar datos</Fragment>
+           } 
+            
         </Button>
         </div>
 
@@ -170,7 +194,7 @@ export const Dashboard = ({ countries }) => {
           :
           <Fragment>
             {renderForm()}
-            <Registros data={users} toggleIsRegistros={toggleIsRegistros} />
+            <Registros data={users} isLoadign={isLoading} toggleIsRegistros={toggleIsRegistros} />
           </Fragment>
         }
 

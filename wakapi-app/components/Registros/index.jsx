@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import Button from '../Button';
 import styles from './registros.module.scss'
 const initialUsers = [];
-export const Registros = ({data,toggleIsRegistros}) => {
+export const Registros = ({data,isLoading,toggleIsRegistros}) => {
     const [width, setWidth] = useState(0)
     useEffect(() => {
         setWidth(window.innerWidth)
@@ -23,7 +23,7 @@ export const Registros = ({data,toggleIsRegistros}) => {
               <h1>Registros</h1>
               </div>
             <div className={styles["table--desktop"]}>
-                {data.length == 0 ? 
+                {data.length == 0 || isLoading ? 
                 <div className={styles.row}>
                     <p>Aun no hay registros</p>
                 </div>:
