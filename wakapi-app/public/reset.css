@@ -53,13 +53,13 @@ License: none (public domain)
    button:disabled{
     box-shadow: none !important;
     cursor: not-allowed;
-    background-color: #B6C6E0 !important;
-    color: white !important;
+    background-color: white !important;
+    color: #B6C6E0 !important;
     width: 165px;
     height: 35px;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Roboto", sans-serif;
+    font-family: "Lato", sans-serif;
   } 
 
 p{

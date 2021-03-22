@@ -20,6 +20,8 @@ const initialUsers = [];
 export const Dashboard = ({ countries }) => {
   const [width, setWidth] = useState(0)
   const [users, setUsers] = useState(initialUsers);
+  const [isRegistros,setIsRegistros] = useState(false);
+  const toggleIsRegistros = () => setIsRegistros(!isRegistros)
 
   const renderCountry = () => {
     return countries.map(c => (
@@ -32,11 +34,11 @@ export const Dashboard = ({ countries }) => {
     setWidth(window.innerWidth)
   }, [])
 
-  
+
 
   const submitForm = (values, actions) => {
-    const u = {id:users.length+1,name:values.name,date:values.date,country:values.country}
-    setUsers([...users,u]);    
+    const u = { id: users.length + 1, name: values.name, date: values.date, country: values.country }
+    setUsers([...users, u]);
   }
   const parseDateString = (value, originalValue) => {
     const parsedValue = (dayjs(originalValue, 'DD/MM/YYYY').format('MM/DD/YYYY'))
@@ -88,7 +90,7 @@ export const Dashboard = ({ countries }) => {
         <label>País</label>
         <select
           name="country"
-          value={values.country}          
+          value={values.country}
           onBlur={handleBlur}
           onChange={handleChange}>
           {renderCountry()}
@@ -103,45 +105,72 @@ export const Dashboard = ({ countries }) => {
     )
   }
 
+  const renderForm = () =>{
+return(
+  <div className={styles.form}>
+              <div className={styles.title__container}>
+                <h1>Hola!</h1>
+                <h2>Registremos tus datos</h2>
+              </div>
+              <div className={styles.form__container}>
+                <Formik
+                  enableReinitialize
+                  initialValues={{
+                    name: '',
+                    date: '',
+                    country: ''
+                  }}
+                  validationSchema={validationSchema}
+                  onSubmit={submitForm}
+                >
+                  {renderFormik}
+                </Formik>
+                <div className={styles.footer__container}>
+                  {width < 480 ?
+                  <Fragment>
+                    {users.length==0 ? 
+                      <Button secondary type="button" disabled onClick={toggleIsRegistros}>
+                        Ver registros
+                      </Button>
+                    :
+                    <Button secondary type="button" onClick={toggleIsRegistros}>
+                      Ver registros
+                    </Button>
+                    }
+                  </Fragment>                    
+                    :
+                    <Fragment></Fragment>
+                  }
+                  <div className={styles.terms__container}>
+                    Al registrar los datos aceptas los Terminos y Condiciones
+                </div>
+                </div>
+              </div>
+            </div>
+)
+  }
   return (
     <Fragment>
       <Head title="Wakapi"></Head>
       <div className={styles.dashboard__container}>
-        <div className={styles.form}>
-        <div className={styles.title__container}>
-          <h1>Hola!</h1>
-          <h2>Registremos tus datos</h2>
-        </div>
-        <div className={styles.form__container}>
-          <Formik
-            enableReinitialize
-            initialValues={{
-              name: '',
-              date: '',
-              country: ''
-            }}
-            validationSchema={validationSchema}
-            onSubmit={submitForm}
-          >
-            {renderFormik}
-          </Formik>
-          <div className={styles.footer__container}>
-            {width < 480 ?
-              <Button secondary type="button">
-                Ver registros
-              </Button>
-              :
-              <Fragment></Fragment>
+        {width<480 ?
+          <Fragment>
+            {!isRegistros ?
+              <Fragment>
+                {renderForm()}
+              </Fragment>
+            :
+            <Registros data={users} />
             }
-            <div className={styles.terms__container}>
-              Al registrar los datos aceptas los Terminos y Condiciones
-            </div>
-          </div>
-        </div>
-        </div>
+          </Fragment>
+          :
+          <Fragment>
+            {renderForm()}
+            <Registros data={users} />
+          </Fragment>
+        }
         
-        <Registros data={users}/>
-        
+
       </div>
     </Fragment>
   )
