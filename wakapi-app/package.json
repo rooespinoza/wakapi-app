@@ -17,6 +17,7 @@
     "next": "^10.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-input-mask": "^2.0.4",
     "react-lottie": "^1.2.3",
     "react-modal": "^3.12.1",
     "react-toastify": "^7.0.3",
