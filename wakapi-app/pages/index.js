@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import styles from './dashboard.module.scss'
+import Link from 'next/link'
 import Head from '../components/head'
 import Button from '../components/Button'
 import Registros from '../components/Registros'
@@ -139,9 +140,14 @@ export const Dashboard = ({ countries }) => {
               :
               <Fragment></Fragment>
             }
-            <div className={styles.terms__container}>
-              Al registrar los datos aceptas los Terminos y Condiciones
-                </div>
+            <div className={styles.terms__container}>              
+              Al registrar los datos aceptas los 
+              <Link href='/terms'>
+                <Button link type='button'>
+                  Terminos y Condiciones
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

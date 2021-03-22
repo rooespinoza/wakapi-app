@@ -25,6 +25,18 @@ button {
         font-family: "Lato", sans-serif;
         transition: all 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
     }
+    &.link {
+      cursor: pointer;
+      font-family: "Lato", sans-serif;
+      outline: none;
+      background-color: transparent;
+      color: $primaryColor;
+      font-size: 13px;
+      max-width: 100%;
+      border: none;
+      margin: 0px;
+    }
+  
 }  
 
 @media (min-width: 360px) {
