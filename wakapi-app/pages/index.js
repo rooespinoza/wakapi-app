@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
     },
   }
 }
-const initialUsers = [{name:'Laura',date:'12/12/1992',country:'Alemania'}];
+const initialUsers = [];
 export const Dashboard = ({ countries }) => {
   const [width, setWidth] = useState(0)
   const [users, setUsers] = useState(initialUsers);
@@ -86,7 +86,11 @@ export const Dashboard = ({ countries }) => {
         )}
         <br />
         <label>País</label>
-        <select name="country">
+        <select
+          name="country"
+          value={values.country}          
+          onBlur={handleBlur}
+          onChange={handleChange}>
           {renderCountry()}
         </select>
         <div className={styles.button__container}>
@@ -103,6 +107,7 @@ export const Dashboard = ({ countries }) => {
     <Fragment>
       <Head title="Wakapi"></Head>
       <div className={styles.dashboard__container}>
+        <div className={styles.form}>
         <div className={styles.title__container}>
           <h1>Hola!</h1>
           <h2>Registremos tus datos</h2>
@@ -133,9 +138,10 @@ export const Dashboard = ({ countries }) => {
             </div>
           </div>
         </div>
+        </div>
         
-         <Registros data={users}/>
-
+        <Registros data={users}/>
+        
       </div>
     </Fragment>
   )

@@ -54,6 +54,9 @@
           font-size: 14px;
       }
   }
+  .footer{
+      bottom: 0;
+  }
 @media (min-width: 360px) {
     .button__container{
        text-align: right;
@@ -89,12 +92,28 @@
 }
 @media (min-width: 720px) {
     
+    .dashboard__container{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .form{
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .title__container{
+        margin-top: 50px;
+    }
 }
 @media (min-width: 1023px) {
     
 }
 @media (min-width: 1280px) {
-    
+    .dashboard__container{
+        padding-right: 10%;
+        padding-left: 10%;
+    }
 }
 @media (min-width: 1600px) {
     
