@@ -30,16 +30,7 @@ export const Dashboard = ({ countries }) => {
   const [isLoading,setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const toggleIsRegistros = () => setIsRegistros(!isRegistros)
-  const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
-  const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
-  
-  const locale = {
-    localize: {
-      month: n => months[n],
-      day: n => days[n]
-    },
-    formatLong: {}
-  }
+
   const spinnerOptions = {
     loop: true,
     autoplay: true,
