@@ -13,6 +13,8 @@ import es from "date-fns/locale/es";
 import Lottie from 'react-lottie'
 import spinner from '../public/animated/spinner.json';
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export async function getServerSideProps(context) {
   const { data } = await getCountry();
   return {
@@ -52,7 +54,7 @@ export const Dashboard = ({ countries }) => {
       setUsers(JSON.parse(localStorage.getItem('users')))
     }
   }, [])
-
+  const message = (text) => toast(text);
   const submitForm = (values, actions) => {
     const list = users;
     let month = values.date.getMonth()+1
@@ -62,6 +64,7 @@ export const Dashboard = ({ countries }) => {
     list.push(u)
     setTimeout(() => {
       setIsLoading(false);
+      message("¡Usuario registrado!")
     }, 1000);
     localStorage.setItem('users', JSON.stringify(list))
   }
@@ -192,6 +195,16 @@ export const Dashboard = ({ countries }) => {
     <Fragment>
       <Head title="Wakapi"></Head>
       <div className={styles.dashboard__container}>
+      <ToastContainer 
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover />
         {width < 480 ?
           <Fragment>
             {!isRegistros ?
