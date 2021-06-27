@@ -57,17 +57,22 @@ export const Dashboard = ({ countries }) => {
   }
   useEffect(() => {
     setWidth(window.innerWidth)
+    if(localStorage.getItem('users')){
+      setUsers(JSON.parse(localStorage.getItem('users')))
+    }
   }, [])
 
   const submitForm = (values, actions) => {
+    const list = users;
     let month = values.date.getMonth()+1
     let date = values.date.getDate()+ "/" + month + "/" + values.date.getFullYear();
     setIsLoading(true);
     const u = { id: users.length + 1, name: values.name, date: date, country: values.country }
-    setUsers([...users, u]);
+    list.push(u)
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+    localStorage.setItem('users', JSON.stringify(list))
   }
   const parseDateString = (value, originalValue) => {
     const parsedValue = (dayjs(originalValue, 'DD/MM/YYYY').format('MM/DD/YYYY'))
