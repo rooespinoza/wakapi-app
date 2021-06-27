@@ -8,10 +8,11 @@ import { Formik } from 'formik'
 import { date, object, string, mixed } from 'yup'
 import { getCountry } from '../utils/fetches'
 import dayjs from 'dayjs'
-import InputMask from 'react-input-mask'
+import DatePicker,{ registerLocale } from "react-datepicker";
+import es from "date-fns/locale/es";
 import Lottie from 'react-lottie'
 import spinner from '../public/animated/spinner.json';
-
+import "react-datepicker/dist/react-datepicker.css";
 export async function getServerSideProps(context) {
   const { data } = await getCountry();
   return {
@@ -21,13 +22,24 @@ export async function getServerSideProps(context) {
   }
 }
 const initialUsers = [];
+registerLocale("es", es);
 export const Dashboard = ({ countries }) => {
   const [width, setWidth] = useState(0)
   const [users, setUsers] = useState(initialUsers);
   const [isRegistros, setIsRegistros] = useState(false);
   const [isLoading,setIsLoading] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
   const toggleIsRegistros = () => setIsRegistros(!isRegistros)
-
+  const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+  const days = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz']
+  
+  const locale = {
+    localize: {
+      month: n => months[n],
+      day: n => days[n]
+    },
+    formatLong: {}
+  }
   const spinnerOptions = {
     loop: true,
     autoplay: true,
@@ -48,8 +60,10 @@ export const Dashboard = ({ countries }) => {
   }, [])
 
   const submitForm = (values, actions) => {
+    let month = values.date.getMonth()+1
+    let date = values.date.getDate()+ "/" + month + "/" + values.date.getFullYear();
     setIsLoading(true);
-    const u = { id: users.length + 1, name: values.name, date: values.date, country: values.country }
+    const u = { id: users.length + 1, name: values.name, date: date, country: values.country }
     setUsers([...users, u]);
     setTimeout(() => {
       setIsLoading(false);
@@ -66,7 +80,7 @@ export const Dashboard = ({ countries }) => {
       .transform(parseDateString)
       .max(dayjs().subtract(2, 'years'), '¿Y ya sabes escribir?')
       .min(dayjs().subtract(120, 'years'), 'Revisa el año de tu nacimiento.')
-      .typeError('Ingresa una fecha de nacimiento válida: mes/día/año')
+      .typeError('Ingresa una fecha de nacimiento válida: día/mes/año')
       .required('Contanos cuándo naciste')
   })
   const renderFormik = ({ values, handleBlur, handleSubmit, handleChange, errors, touched, isSubmitting }) => {
@@ -87,15 +101,8 @@ export const Dashboard = ({ countries }) => {
         )}
         <br />
         <label>Fecha de Nacimiento</label>
-        <InputMask
-          mask="99/99/9999"
-          name="date"
-          inputMode="numeric"
-          placeholder="mm/dd/año"
-          value={values.date}
-          onBlur={handleBlur}
-          onChange={handleChange}
-        />
+        <br/>
+        <DatePicker  selected={startDate} onChange={(date) => {setStartDate(date); values.date=date;}} dateFormat="dd/MM/yyyy" locale='es'/>
         {errors.date && touched.date && (
           <div className={styles["form--error"]}>
             {errors.date}
