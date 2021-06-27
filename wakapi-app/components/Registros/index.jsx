@@ -38,7 +38,7 @@ export const Registros = ({data,isLoading,toggleIsRegistros, setData}) => {
                 }
               
             </div>
-            {data.length!=0 &&
+            {data.length!=0 && width>=480 &&
               <div className={styles["buttons__container--desktop"]}>
                 <Button secondary onClick={clearLocalStorage}>Limpiar Registros</Button>
               </div>
