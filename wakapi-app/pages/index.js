@@ -12,6 +12,7 @@ import DatePicker,{ registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import Lottie from 'react-lottie'
 import spinner from '../public/animated/spinner.json';
+import tick from '../public/animated/tick.json';
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,6 +42,14 @@ export const Dashboard = ({ countries }) => {
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
+  const tickOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: tick,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
   const renderCountry = () => {
     return countries.map(c => (
       <option key={c.alpha3code} value={c.name}>
@@ -64,7 +73,7 @@ export const Dashboard = ({ countries }) => {
     list.push(u)
     setTimeout(() => {
       setIsLoading(false);
-      message("¡Usuario registrado!")
+      message(<div className={styles.toast__container}><Lottie options={tickOptions} height={50} width={50} />¡Usuario registrado!</div>)
     }, 1000);
     localStorage.setItem('users', JSON.stringify(list))
   }

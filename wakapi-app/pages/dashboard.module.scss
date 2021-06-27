@@ -57,6 +57,13 @@
   .footer{
       bottom: 0;
   }
+  .toast__container{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: visible;
+  }
 @media (min-width: 360px) {
     .button__container{
        text-align: right;
