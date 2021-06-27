@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Head from '../components/head'
 import Button from '../components/Button'
 import Registros from '../components/Registros'
-import { Formik } from 'formik'
+import {Field, Formik } from 'formik'
 import { date, object, string, mixed } from 'yup'
 import { getCountry } from '../utils/fetches'
 import dayjs from 'dayjs'
@@ -64,7 +64,7 @@ export const Dashboard = ({ countries }) => {
     }
   }, [])
   const message = (text) => toast(text);
-  const submitForm = (values, actions) => {
+  const submitForm = (values,actions) => {
     const list = users;
     let month = values.date.getMonth()+1
     let date = values.date.getDate()+ "/" + month + "/" + values.date.getFullYear();
@@ -73,7 +73,9 @@ export const Dashboard = ({ countries }) => {
     list.push(u)
     setTimeout(() => {
       setIsLoading(false);
-      message(<div className={styles.toast__container}><Lottie options={tickOptions} height={50} width={50} />¡Usuario registrado!</div>)
+      message(<div className={styles.toast__container}><Lottie options={tickOptions} height={50} width={50} />¡Usuario registrado!</div>);
+      actions.resetForm()
+      setStartDate(new Date())
     }, 1000);
     localStorage.setItem('users', JSON.stringify(list))
   }
@@ -93,11 +95,11 @@ export const Dashboard = ({ countries }) => {
     country: string()
     .required('¿De dónde sos?'),
   })
-  const renderFormik = ({ values, handleBlur, handleSubmit, handleChange, errors, touched, isSubmitting }) => {
+  const renderFormik = ({ values, handleBlur, handleSubmit, handleChange, errors, touched, isSubmitting,actions }) => {
     return (
       <form onSubmit={handleSubmit} id="formVueltos">
         <label>Nombre</label>
-        <input
+        <Field
           id='name'
           name='name'
           values={values.name}
@@ -112,7 +114,7 @@ export const Dashboard = ({ countries }) => {
         <br />
         <label>Fecha de Nacimiento</label>
         <br/>
-        <DatePicker  selected={startDate} onChange={(date) => {setStartDate(date); values.date=date;}} dateFormat="dd/MM/yyyy" locale='es'/>
+        <DatePicker selected={startDate} onChange={(date) => {setStartDate(date); values.date=date;}} dateFormat="dd/MM/yyyy" locale='es'/>
         {errors.date && touched.date && (
           <div className={styles["form--error"]}>
             {errors.date}
@@ -120,14 +122,14 @@ export const Dashboard = ({ countries }) => {
         )}
         <br />
         <label>País</label>
-        <select
+        <Field as="select"
           name="country"
           value={values.country}
           onBlur={handleBlur}
           onChange={handleChange}>
-             <option key='0' value='' selected> Seleccione una opción </option>
+             <option key='0' value='' defaultValue> Seleccione una opción </option>
           {renderCountry()}
-        </select>
+        </Field>
         {errors.country && touched.country && (
           <div className={styles["form--error"]}>
             {errors.country}
@@ -150,7 +152,6 @@ export const Dashboard = ({ countries }) => {
       </form>
     )
   }
-
   const renderForm = () => {
     return (
       <div className={styles.form}>
