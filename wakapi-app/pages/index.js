@@ -81,7 +81,9 @@ export const Dashboard = ({ countries }) => {
       .max(dayjs().subtract(2, 'years'), '¿Y ya sabes escribir?')
       .min(dayjs().subtract(120, 'years'), 'Revisa el año de tu nacimiento.')
       .typeError('Ingresa una fecha de nacimiento válida: día/mes/año')
-      .required('Contanos cuándo naciste')
+      .required('Contanos cuándo naciste'),
+    country: string()
+    .required('¿De dónde sos?'),
   })
   const renderFormik = ({ values, handleBlur, handleSubmit, handleChange, errors, touched, isSubmitting }) => {
     return (
@@ -115,8 +117,14 @@ export const Dashboard = ({ countries }) => {
           value={values.country}
           onBlur={handleBlur}
           onChange={handleChange}>
+             <option key='0' value='' selected> Seleccione una opción </option>
           {renderCountry()}
         </select>
+        {errors.country && touched.country && (
+          <div className={styles["form--error"]}>
+            {errors.country}
+          </div>
+        )}
         <div className={styles.button__container}>
           <Button primary type="submit">
            {isLoading ? 
