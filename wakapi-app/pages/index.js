@@ -221,13 +221,13 @@ export const Dashboard = ({ countries }) => {
                 {renderForm()}
               </Fragment>
               :
-              <Registros data={users} toggleIsRegistros={toggleIsRegistros}/>
+              <Registros data={users} setData={setUsers} toggleIsRegistros={toggleIsRegistros}/>
             }
           </Fragment>
           :
           <Fragment>
             {renderForm()}
-            <Registros data={users} isLoadign={isLoading} toggleIsRegistros={toggleIsRegistros} />
+            <Registros data={users} setData={setUsers} isLoadign={isLoading} toggleIsRegistros={toggleIsRegistros} />
           </Fragment>
         }
 

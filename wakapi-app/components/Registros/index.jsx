@@ -2,11 +2,15 @@ import React, { Fragment, useEffect, useState } from 'react'
 import Button from '../Button';
 import styles from './registros.module.scss'
 const initialUsers = [];
-export const Registros = ({data,isLoading,toggleIsRegistros}) => {
+export const Registros = ({data,isLoading,toggleIsRegistros, setData}) => {
     const [width, setWidth] = useState(0)
     useEffect(() => {
         setWidth(window.innerWidth)
       }, [])
+  const clearLocalStorage = () =>{
+    localStorage.clear();
+    setData([])
+  }
   const renderRegistros = () =>{
     return data.map(u=>(
         <div className={styles.row} key={u.id}>
@@ -34,8 +38,16 @@ export const Registros = ({data,isLoading,toggleIsRegistros}) => {
                 }
               
             </div>
+            {data.length!=0 &&
+              <div className={styles["buttons__container--desktop"]}>
+                <Button secondary onClick={clearLocalStorage}>Limpiar Registros</Button>
+              </div>
+            }
             {width<480?
-            <Button secondary onClick={toggleIsRegistros}>Volver</Button>
+            <div className={styles.buttons__container}>
+              <Button secondary onClick={clearLocalStorage}>Limpiar Registros</Button>
+              <Button secondary onClick={toggleIsRegistros}>Volver</Button>
+            </div>
             :
             <Fragment></Fragment>
             }

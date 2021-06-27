@@ -24,14 +24,15 @@ button {
     }
 
     &.secondary{
-      min-width: 100px;
-        background-color: white;
+        min-width: 117px;
+        background-color: #EEF9FC;
         color:$primaryColor;
         height: 40px;
         font-size: 14px;
         font-weight: 700;
         font-family: "Lato", sans-serif;
         transition: all 0.6s cubic-bezier(0.01, 1.69, 0.99, 0.94);
+        box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: 0.1);
     }
     &.secondary:hover{
       color:$hoverColor;
